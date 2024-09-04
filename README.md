@@ -1,9 +1,9 @@
 What is XVX?
 ============
-XVX is a kernel part of use for xvxOS. the kernel is based on the xv6, It is mainly built from scratch, but the kernel itself is based on xv6-public source code.
-
+XVX is a kernel part of use for xvxOS. the kernel is inspired by the xv6, It is mainly built from scratch, it does not contain any xv6 code.
 XVX Source Tree
 ===============
+To be finished
 
 How to build XVX
 ================
@@ -22,3 +22,4 @@ Special Thanks
 ==============
 - MIT-PDOS (github) for xv6-public
 - palladian1 (github) for xv6-annotated
+- Little OS Book by Erik Helin, Adam Renberg.
