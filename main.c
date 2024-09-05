@@ -1,6 +1,7 @@
 #include "monitor.h"
 #include "descriptor_tables.h"
 #include "timer.h"
+#include "paging.h"
 
 int main(struct multiboot *mboot_ptr)
 {
@@ -8,14 +9,20 @@ int main(struct multiboot *mboot_ptr)
     init_descriptor_tables();
 
 	monitor_clear();
-	monitor_write("xvX Operating System, Kernel 0.3.5\n");
 
-	asm volatile("int $0x3");
-    asm volatile("int $0x4");
+	initialise_paging();
+	monitor_write("xvX Operating System, Kernel 0.3.8\n");
 
-    asm volatile("sti");
+	// asm volatile("int $0x3");
+ //    asm volatile("int $0x4");
 
-    init_timer(50);
+ //    asm volatile("sti");
+
+    // Page fault!
+   	u32int *ptr = (u32int*)0xA0000000;
+   	u32int do_page_fault = *ptr;
+
+    //init_timer(50);
 
   	return 0;
 } 
