@@ -2,27 +2,36 @@
 #include "descriptor_tables.h"
 #include "timer.h"
 #include "paging.h"
+#include "multiboot.h"
+
+char oem[] = "SPC";
 
 int main(struct multiboot *mboot_ptr)
 {
-	// Initialise all the ISRs and segmentation
+    // Initialise all the ISRs and segmentation
     init_descriptor_tables();
+    // Initialise the screen (by clearing it)
+    monitor_clear();
+    u32int a = kmalloc(8);
+    initialise_paging();
+    u32int b = kmalloc(8);
+    u32int c = kmalloc(8);
+    monitor_write("a: ");
+    monitor_write_hex(a);
+    monitor_write(", b: ");
+    monitor_write_hex(b);
+    monitor_write("\nc: ");
+    monitor_write_hex(c);
 
-	monitor_clear();
+    kfree(c);
+    kfree(b);
+    u32int d = kmalloc(12);
+    monitor_write(", d: ");
+    monitor_write_hex(d);
 
-	initialise_paging();
-	monitor_write("xvX Operating System, Kernel 0.3.8\n");
+    monitor_write("\nxvX Operating System Kernel 0.5.7\nOEM: ");
+    monitor_write(oem);
+    monitor_write("\n");
 
-	// asm volatile("int $0x3");
- //    asm volatile("int $0x4");
-
- //    asm volatile("sti");
-
-    // Page fault!
-   	u32int *ptr = (u32int*)0xA0000000;
-   	u32int do_page_fault = *ptr;
-
-    //init_timer(50);
-
-  	return 0;
-} 
+    return 0;
+}

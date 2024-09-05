@@ -8,17 +8,17 @@ void outb(u16int port, u8int value)
 
 u8int inb(u16int port)
 {
-   u8int ret;
-   asm volatile("inb %1, %0" : "=a" (ret) : "dN" (port));
-   return ret;
+    u8int ret;
+    asm volatile("inb %1, %0" : "=a" (ret) : "dN" (port));
+    return ret;
 }
 
 u16int inw(u16int port)
 {
-   u16int ret;
-   asm volatile ("inw %1, %0" : "=a" (ret) : "dN" (port));
-   return ret;
-} 
+    u16int ret;
+    asm volatile ("inw %1, %0" : "=a" (ret) : "dN" (port));
+    return ret;
+}
 
 // Copy len bytes from src to dest.
 void memcpy(u8int *dest, const u8int *src, u32int len)

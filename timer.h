@@ -1,8 +1,3 @@
-/*
-	PIT Timer
-	Developed by xvX Developers <Adaptable Hybrid Kernel Team>
-*/
-
 #ifndef TIMER_H
 #define TIMER_H
 
